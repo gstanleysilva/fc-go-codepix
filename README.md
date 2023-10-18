@@ -11,8 +11,11 @@ Utilizamos Docker para que todos os serviços que utilizaremos fiquem disponíve
 `docker-compose up -d`
 
 ### Como executar a aplicação
-- Acesse o container da aplicação executando: `docker exec -it codepix_app bash`
-- Rode `go run cmd/codepix/main.go`
+- Acesse o container da aplicação executando: `docker exec -it <docker-container> bash`
+
+- Rode `make run` para executar gRPC server e Kafka consumer
+- Rode `make run-grpc` para executar gRPC
+- Rode `make run-kafka` para executar Kafka consumer
 
 ### Serviços utilizados ao executar o docker-compose
 

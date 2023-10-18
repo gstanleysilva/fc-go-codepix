@@ -1,4 +1,10 @@
 run:
+	@go run main.go all 
+
+run-kafka:
+	@go run main.go kafka 
+
+run-grpc:
 	@go run main.go grpc -p 50051
 
 proto:
