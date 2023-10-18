@@ -9,28 +9,28 @@ import (
 
 type TransactionUseCase struct {
 	TransactionRepository model.TransactionRepository
-	PixKeyRepository      model.PixKeyRepository
+	PixRepository         model.PixKeyRepository
 }
 
-func (t *TransactionUseCase) Register(accountId string, amount float64, pixKeyto string, pixKeyKindTo string, description string) (*model.Transaction, error) {
+func (t *TransactionUseCase) Register(accountId string, amount float64, pixKeyto string, pixKeyKindTo string, description string, id string) (*model.Transaction, error) {
 
-	account, err := t.PixKeyRepository.FindAccount(accountId)
+	account, err := t.PixRepository.FindAccount(accountId)
 	if err != nil {
 		return nil, err
 	}
 
-	pixKey, err := t.PixKeyRepository.FindKeyByKind(pixKeyto, pixKeyKindTo)
+	pixKey, err := t.PixRepository.FindKeyByKind(pixKeyto, pixKeyKindTo)
 	if err != nil {
 		return nil, err
 	}
 
-	transaction, err := model.NewTransaction(account, amount, pixKey, description)
+	transaction, err := model.NewTransaction(account, amount, pixKey, description, id)
 	if err != nil {
 		return nil, err
 	}
 
 	t.TransactionRepository.Save(transaction)
-	if transaction.ID != "" {
+	if transaction.Base.ID != "" {
 		return transaction, nil
 	}
 
