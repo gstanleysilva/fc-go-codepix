@@ -14,6 +14,7 @@ Utilizamos Docker para que todos os serviços que utilizaremos fiquem disponíve
 - Acesse o container da aplicação executando: `docker exec -it <docker-container> bash`
 
 - Rode `make run` para executar gRPC server e Kafka consumer
+  ou
 - Rode `make run-grpc` para executar gRPC
 - Rode `make run-kafka` para executar Kafka consumer
 
